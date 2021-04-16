@@ -1,0 +1,39 @@
+Determine if elements in a string are unique. Return a boolean. 
+
+input: "hello"
+output: false
+
+input: "copyright"
+output: true
+
+const isUnique = (string) => {
+  let hash = {};
+  for(let i = 0; i < string.length; i++){
+    if (hash[string[i]] != null){
+      return false;
+    } else {
+      hash[string[i]] = 1;
+    }
+  }
+  return true;
+}
+
+console.log(isUnique("hello"))
+console.log(isUnique("copyright"))
+
+
+const isUniqueRecursive = (string, hash = {}) => {
+  if (string.length == 0){
+    return true;
+  }
+  else if (hash[string[0]] != null){
+    return false;
+  }
+  else {
+    hash[string[0]] = 1;
+    return isUniqueRecursive(string.slice(1), hash)
+  }
+}
+
+console.log(isUniqueRecursive("hello"))
+console.log(isUniqueRecursive("copyright"))
